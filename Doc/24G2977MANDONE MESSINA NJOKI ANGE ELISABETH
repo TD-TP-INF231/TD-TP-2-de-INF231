@@ -9,3 +9,16 @@ ce code  utilise une approche structurée pour gérer les éléments de la liste
 
 4-Le code est conçu pour être efficient et facile à comprendre, avec des commentaires et des noms de variables clairs pour faciliter la lecture et la compréhension du code.
 il est toujours difficile de savoir insérer des éléments dans une liste simplement chaînées triées en utilisant des pointeurs
+Ce code C implémente une liste chaînée simple et fournit une fonction pour y insérer des entiers tout en maintenant la liste triée par ordre croissant.
+Voici un résumé concis des composants clés :
+⚙️ Composants du Code
+| Nom | Type | Rôle |
+|---|---|---|
+| Element | struct | Définit la structure d'un nœud dans la liste. Chaque nœud contient une valeur entière et un pointeur (suivant) vers l'élément subséquent. |
+| creerElement | Fonction | Alloue de la mémoire pour un nouvel Element, initialise sa valeur et met son pointeur suivant à NULL. |
+| insererDansListeTriee | Fonction | C'est la fonction principale. Elle prend un pointeur vers la tête de la liste (Element** tete) et une valeur. Elle crée un nouvel élément et le parcourt la liste jusqu'à trouver l'emplacement où l'élément précédent est plus petit et l'élément suivant est plus grand (ou NULL), assurant ainsi que la liste reste triée. |
+| afficherListe | Fonction | Parcourt la liste de la tête jusqu'à la fin (NULL) et affiche la valeur de chaque élément, séparée par ->. |
+| main | Fonction | Le point d'entrée du programme. Elle initialise une liste vide (tete = NULL), insère les valeurs 5, 3, 8, 2, 6 de manière séquentielle, et affiche la liste résultante, qui sera triée. |
+Résultat Attendu
+Bien que les éléments soient insérés dans un ordre aléatoire (5, 3, 8, 2, 6), la fonction insererDansListeTriee garantit que la liste sera affichée dans l'ordre croissant.
+Sortie : 2 -> 3 -> 5 -> 6 -> 8 -> NULL
