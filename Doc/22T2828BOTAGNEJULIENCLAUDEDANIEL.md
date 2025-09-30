@@ -48,6 +48,7 @@
 - J’ai utilisé la boucle `do...while` pour garantir un parcours complet tout en arrêtant quand je reviens à la tête.  
 - J’ai traité le cas particulier de la liste vide en faisant pointer le premier élément vers lui-même.
 
+  **création de la branche TD_TP2_suggestions**
 
 ## Modifications apportées à l'exercice 2
 
