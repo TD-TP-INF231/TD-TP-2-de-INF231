@@ -3,7 +3,6 @@
 **Nom :** BOTAGNE JULIEN CLAUDE DANIEL  
 **Matricule :** 22T2828  
 
-**Enseignant:**  Pr melantagia 
 
 ## Exercice 3 : Liste doublement chaînée triée
 
@@ -82,3 +81,5 @@ for (int i = 0; i < n; i++) {
     scanf("%d", &data);
     head = insertTail(head, data);
 }
+
+##**Écriture du contenu du fichier readme.md**
