@@ -43,14 +43,19 @@ void afficherListe(Element* tete) {
 
 int main() {
     Element* tete = NULL;
+    int n, valeur;
 
-    // Insérer des éléments dans la liste triée
-    insererDansListeTriee(&tete, 5);
-    insererDansListeTriee(&tete, 3);
-    insererDansListeTriee(&tete, 8);
-    insererDansListeTriee(&tete, 2);
-    insererDansListeTriee(&tete, 6);
+    printf("Combien d'éléments voulez-vous insérer dans la liste ? ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        printf("Entrez l'élément %d : ", i + 1);
+        scanf("%d", &valeur);
+        insererDansListeTriee(&tete, valeur);
+    }
+
     printf("Liste triée : ");
     afficherListe(tete);
+
     return 0;
 }
