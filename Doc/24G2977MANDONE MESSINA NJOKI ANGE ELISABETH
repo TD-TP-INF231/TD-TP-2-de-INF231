@@ -1,10 +1,10 @@
 exercice 2
 
-Les difficultés potentielles rencontrées :que l'on pourrait rencontrer lors de la réalisation de cet exercice incluent la gestion des pointeurs et l'insertion des éléments dans la liste de manière à maintenir l'ordre trié.
+1-Les difficultés potentielles rencontrées lors de la réalisation de cet exercice incluent la gestion des pointeurs et l'insertion des éléments dans la liste de manière à maintenir l'ordre trié.
 
-Le code que j'ai écris  inclut des fonctions pour créer des éléments, insérer des éléments dans la liste triée et afficher la liste. J'ai utilisé des pointeurs pour gérer les éléments de la liste et j'ai implémenté une logique pour insérer les éléments dans l'ordre trier  
+2-Le code que j'ai écris  inclut des fonctions pour créer des éléments, insérer des éléments dans la liste triée et afficher la liste. J'ai utilisé des pointeurs pour gérer les éléments de la liste et j'ai implémenté une logique pour insérer les éléments dans l'ordre trier  
 ce code  utilise une approche structurée pour gérer les éléments de la liste simplement chaînée triée. Les fonctions que j'ai implémentées permettent de créer des éléments, d'insérer des éléments dans la liste de manière à maintenir l'ordre trié et d'afficher la liste.
 
-La fonction insererDansListeTriee est particulièrement importante, car elle permet d'insérer des éléments dans la liste de manière à maintenir l'ordre trié. Cette fonction utilise des pointeurs pour parcourir la liste et trouver l'emplacement approprié pour insérer le nouvel élément.
+3-La fonction insererDansListeTriee est particulièrement importante, car elle permet d'insérer des éléments dans la liste de manière à maintenir l'ordre trié. Cette fonction utilise des pointeurs pour parcourir la liste et trouver l'emplacement approprié pour insérer le nouvel élément.
 
-Le code est conçu pour être efficient et facile à comprendre, avec des commentaires et des noms de variables clairs pour faciliter la lecture et la compréhension du code.
+4-Le code est conçu pour être efficient et facile à comprendre, avec des commentaires et des noms de variables clairs pour faciliter la lecture et la compréhension du code.
