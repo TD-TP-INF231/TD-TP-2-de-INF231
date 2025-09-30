@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Structure pour une liste doublement chaînée circulaire
 struct Node {
     int data;
     struct Node* prev;
     struct Node* next;
 };
 
-// Fonction pour insérer en tête
 struct Node* insertHead(struct Node* head, int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -26,7 +24,6 @@ struct Node* insertHead(struct Node* head, int data) {
     return newNode;
 }
 
-// Fonction pour insérer en queue
 struct Node* insertTail(struct Node* head, int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -44,7 +41,6 @@ struct Node* insertTail(struct Node* head, int data) {
     return head;
 }
 
-// Fonction pour afficher la liste
 void display(struct Node* head) {
     if (head == NULL) {
         printf("Liste vide\n");
@@ -60,12 +56,16 @@ void display(struct Node* head) {
 
 int main() {
     struct Node* head = NULL;
-    int data;
+    int n, data;
 
-    // Création d'une liste pour tester
-    head = insertHead(head, 3);
-    head = insertHead(head, 2);
-    head = insertTail(head, 4);
+    printf("Combien d'éléments voulez-vous insérer dans la liste initiale ? ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        printf("Entrez l'élément %d : ", i + 1);
+        scanf("%d", &data);
+        head = insertTail(head, data);
+    }
 
     printf("Liste initiale : ");
     display(head);
