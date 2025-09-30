@@ -47,3 +47,18 @@
 ### Solutions
 - J’ai utilisé la boucle `do...while` pour garantir un parcours complet tout en arrêtant quand je reviens à la tête.  
 - J’ai traité le cas particulier de la liste vide en faisant pointer le premier élément vers lui-même.
+
+## Modifications apportées à l'exercice 2
+
+- Correction du code pour rendre la liste triée interactive :  
+  ```c
+  // Suppression des valeurs codées en dur
+  // Ajout de la saisie utilisateur pour créer la liste initiale
+  int n, valeur;
+  printf("Combien d'éléments voulez-vous insérer dans la liste ? ");
+  scanf("%d", &n);
+  for (int i = 0; i < n; i++) {
+      printf("Entrez l'élément %d : ", i + 1);
+      scanf("%d", &valeur);
+      insererDansListeTriee(&tete, valeur);
+  }
