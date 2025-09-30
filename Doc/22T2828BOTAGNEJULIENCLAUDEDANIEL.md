@@ -26,7 +26,7 @@
 - J’ai ajouté des conditions pour traiter séparément la liste vide et l’insertion en tête.  
 - J’ai fait attention à bien initialiser les pointeurs `avant` et `apres` à `NULL` au moment de l’allocation.  
 
----
+
 
 ## Exercice 4 : Liste simplement chaînée circulaire
 
@@ -48,6 +48,7 @@
 - J’ai utilisé la boucle `do...while` pour garantir un parcours complet tout en arrêtant quand je reviens à la tête.  
 - J’ai traité le cas particulier de la liste vide en faisant pointer le premier élément vers lui-même.
 
+
 ## Modifications apportées à l'exercice 2
 
 - Correction du code pour rendre la liste triée interactive :  
@@ -62,3 +63,21 @@
       scanf("%d", &valeur);
       insererDansListeTriee(&tete, valeur);
   }
+
+## proposition Exercice  5 : Liste doublement chaînée circulaire
+
+### Proposition
+Créer une liste doublement chaînée circulaire permettant :
+- l’insertion d’éléments en tête et en queue,  
+- l’affichage de la liste complète.
+
+### Solution
+```c
+int n, data;
+printf("Combien d'éléments voulez-vous insérer dans la liste initiale ? ");
+scanf("%d", &n);
+for (int i = 0; i < n; i++) {
+    printf("Entrez l'élément %d : ", i + 1);
+    scanf("%d", &data);
+    head = insertTail(head, data);
+}
