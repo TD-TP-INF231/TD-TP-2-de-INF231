@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure pour une liste simplement chaînée circulaire
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Fonction pour insérer en tête
+struct Node* insertHead(struct Node* head, int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+
+    if (head == NULL) {
+        newNode->next = newNode;
+        return newNode;
+    }
+
+    struct Node* current = head;
+    while (current->next != head) {
+        current = current->next;
+    }
+    newNode->next = head;
+    current->next = newNode;
+    return newNode;
+}
+
+// Fonction pour insérer en queue
+struct Node* insertTail(struct Node* head, int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+
+    if (head == NULL) {
+        newNode->next = newNode;
+        return newNode;
+    }
+
+    struct Node* current = head;
+    while (current->next != head) {
+        current = current->next;
+    }
+    current->next = newNode;
+    newNode->next = head;
+    return head;
+}
+
+// Fonction pour afficher la liste
+void display(struct Node* head) {
+    if (head == NULL) {
+        printf("Liste vide\n");
+        return;
+    }
+    struct Node* current = head;
+    do {
+        printf("%d -> ", current->data);
+        current = current->next;
+    } while (current != head);
+    printf("(retour à la tête)\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+    int data;
+
+    // Création d'une liste pour tester
+    head = insertHead(head, 3);
+    head = insertHead(head, 2);
+    head = insertTail(head, 4);
+
+    printf("Liste initiale : ");
+    display(head);
+
+    printf("Entrez l'élément à insérer en tête : ");
+    scanf("%d", &data);
+    head = insertHead(head, data);
+
+    printf("Liste après insertion en tête de %d : ", data);
+    display(head);
+
+    printf("Entrez l'élément à insérer en queue : ");
+    scanf("%d", &data);
+    head = insertTail(head, data);
+
+    printf("Liste après insertion en queue de %d : ", data);
+    display(head);
+
+    return 0;
+}
