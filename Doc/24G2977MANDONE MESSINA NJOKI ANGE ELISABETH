@@ -8,3 +8,4 @@ ce code  utilise une approche structurée pour gérer les éléments de la liste
 3-La fonction insererDansListeTriee est particulièrement importante, car elle permet d'insérer des éléments dans la liste de manière à maintenir l'ordre trié. Cette fonction utilise des pointeurs pour parcourir la liste et trouver l'emplacement approprié pour insérer le nouvel élément.
 
 4-Le code est conçu pour être efficient et facile à comprendre, avec des commentaires et des noms de variables clairs pour faciliter la lecture et la compréhension du code.
+il est toujours difficile de savoir insérer des éléments dans une liste simplement chaînées triées en utilisant des pointeurs
