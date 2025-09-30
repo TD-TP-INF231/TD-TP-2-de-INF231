@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure pour une liste simplement chaînée
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Fonction pour insérer un élément dans une liste triée
+struct Node* insertSorted(struct Node* head, int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+
+    // Cas où la liste est vide ou l'élément va en tête
+    if (head == NULL || head->data >= data) {
+        newNode->next = head;
+        return newNode;
+    }
+
+    // Parcourir pour trouver la position d'insertion
+    struct Node* current = head;
+    while (current->next != NULL && current->next->data < data) {
+        current = current->next;
+    }
+
+    newNode->next = current->next;
+    current->next = newNode;
+    return head;
+}
+
+// Fonction pour afficher la liste
+void display(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+    int data;
+
+    // Création d'une liste triée pour tester
+    head = insertSorted(head, 2);
+    head = insertSorted(head, 4);
+    head = insertSorted(head, 6);
+
+    printf("Liste initiale : ");
+    display(head);
+
+    printf("Entrez l'élément à insérer : ");
+    scanf("%d", &data);
+
+    head = insertSorted(head, data);
+
+    printf("Liste après insertion de %d : ", data);
+    display(head);
+
+    return 0;
+}
