@@ -3,7 +3,6 @@
 **Nom :** BOTAGNE JULIEN CLAUDE DANIEL  
 **Matricule :** 22T2828  
 
-##**Écriture du contenu du fichier readme.md**
 
 ## Exercice 3 : Liste doublement chaînée triée
 
@@ -49,6 +48,8 @@
 - J’ai traité le cas particulier de la liste vide en faisant pointer le premier élément vers lui-même.
 
  ## **création de la branche TD_TP2_suggestions**
+
+ ##**Écriture du contenu du fichier readme.md**
 
 ## Modifications apportées à l'exercice 2
 
