@@ -1,77 +1,273 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Structure pour une liste simplement chaînée
 struct Node {
     int data;
     struct Node* next;
 };
 
-// Fonction pour insérer un élément en tête (pour tester)
-struct Node* insert(struct Node* head, int data) {
+// Insertion en tête
+struct Node* insertHead(struct Node* head, int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Erreur d'allocation mémoire!\n");
+        return head;
+    }
     newNode->data = data;
     newNode->next = head;
+    printf("✓ Élément %d inséré en tête.\n", data);
     return newNode;
 }
 
-// Fonction pour supprimer toutes les occurrences d'un élément
+// Insertion en queue
+struct Node* insertTail(struct Node* head, int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Erreur d'allocation mémoire!\n");
+        return head;
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+    
+    if (head == NULL) return newNode;
+    
+    struct Node* current = head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = newNode;
+    printf("✓ Élément %d inséré en queue.\n", data);
+    return head;
+}
+
+// Suppression de toutes les occurrences
 struct Node* deleteOccurrences(struct Node* head, int key) {
     struct Node *current = head, *prev = NULL, *temp;
+    int count = 0;
 
-    // Cas où la tête contient l'élément à supprimer
     while (current != NULL && current->data == key) {
         temp = current;
         current = current->next;
         free(temp);
+        count++;
     }
     head = current;
 
-    // Parcourir le reste de la liste
     while (current != NULL) {
         if (current->data == key) {
             prev->next = current->next;
             free(current);
             current = prev->next;
+            count++;
         } else {
             prev = current;
             current = current->next;
         }
     }
+    
+    if (count > 0)
+        printf("✓ %d occurrence(s) de %d supprimée(s).\n", count, key);
+    else
+        printf("✗ Élément %d non trouvé.\n", key);
+    
     return head;
 }
 
-// Fonction pour afficher la liste
-void display(struct Node* head) {
-    struct Node* current = head;
-    while (current != NULL) {
-        printf("%d -> ", current->data);
+// Suppression de la première occurrence
+struct Node* deleteFirst(struct Node* head, int key) {
+    struct Node *current = head, *prev = NULL;
+    
+    if (head == NULL) {
+        printf("✗ Liste vide!\n");
+        return head;
+    }
+    
+    if (head->data == key) {
+        struct Node* temp = head;
+        head = head->next;
+        free(temp);
+        printf("✓ Première occurrence de %d supprimée.\n", key);
+        return head;
+    }
+    
+    while (current != NULL && current->data != key) {
+        prev = current;
         current = current->next;
     }
-    printf("NULL\n");
+    
+    if (current == NULL) {
+        printf("✗ Élément %d non trouvé.\n", key);
+    } else {
+        prev->next = current->next;
+        free(current);
+        printf("✓ Première occurrence de %d supprimée.\n", key);
+    }
+    
+    return head;
+}
+
+// Recherche d'un élément
+void search(struct Node* head, int key) {
+    struct Node* current = head;
+    int position = 1, count = 0;
+    
+    printf("Recherche de %d : ", key);
+    while (current != NULL) {
+        if (current->data == key) {
+            if (count == 0) printf("Trouvé aux positions : ");
+            printf("%d ", position);
+            count++;
+        }
+        current = current->next;
+        position++;
+    }
+    
+    if (count == 0)
+        printf("Non trouvé");
+    else
+        printf("(%d occurrence(s))", count);
+    printf("\n");
+}
+
+// Compter les éléments
+int countNodes(struct Node* head) {
+    int count = 0;
+    struct Node* current = head;
+    while (current != NULL) {
+        count++;
+        current = current->next;
+    }
+    return count;
+}
+
+// Affichage
+void display(struct Node* head) {
+    if (head == NULL) {
+        printf("Liste vide: NULL\n");
+        return;
+    }
+    
+    struct Node* current = head;
+    printf("Liste actuelle: ");
+    while (current != NULL) {
+        printf("%d", current->data);
+        if (current->next != NULL) printf(" -> ");
+        current = current->next;
+    }
+    printf(" -> NULL (%d élément(s))\n", countNodes(head));
+}
+
+// Libérer la mémoire
+void freeList(struct Node* head) {
+    struct Node* temp;
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+}
+
+// Menu interactif
+void displayMenu() {
+    printf("\n╔════════════════════════════════════════╗\n");
+    printf("║   GESTIONNAIRE DE LISTE CHAÎNÉE       ║\n");
+    printf("╠════════════════════════════════════════╣\n");
+    printf("║ 1. Insérer en tête                     ║\n");
+    printf("║ 2. Insérer en queue                    ║\n");
+    printf("║ 3. Supprimer toutes les occurrences    ║\n");
+    printf("║ 4. Supprimer première occurrence       ║\n");
+    printf("║ 5. Rechercher un élément               ║\n");
+    printf("║ 6. Afficher la liste                   ║\n");
+    printf("║ 7. Compter les éléments                ║\n");
+    printf("║ 0. Quitter                             ║\n");
+    printf("╚════════════════════════════════════════╝\n");
+    printf("Choix: ");
 }
 
 int main() {
     struct Node* head = NULL;
-    int key;
-
-    // Création d'une liste pour tester
-    head = insert(head, 5);
-    head = insert(head, 3);
-    head = insert(head, 5);
-    head = insert(head, 2);
-    head = insert(head, 5);
-
-    printf("Liste initiale : ");
-    display(head);
-
-    printf("Entrez l'élément à supprimer : ");
-    scanf("%d", &key);
-
-    head = deleteOccurrences(head, key);
-
-    printf("Liste après suppression de %d : ", key);
-    display(head);
-
+    int choice, value;
+    
+    printf("╔════════════════════════════════════════╗\n");
+    printf("║     Bienvenue dans le gestionnaire     ║\n");
+    printf("║        de listes chaînées!             ║\n");
+    printf("╚════════════════════════════════════════╝\n");
+    
+    do {
+        displayMenu();
+        
+        if (scanf("%d", &choice) != 1) {
+            printf("✗ Entrée invalide!\n");
+            while(getchar() != '\n');
+            continue;
+        }
+        
+        switch(choice) {
+            case 1:
+                printf("Valeur à insérer en tête: ");
+                scanf("%d", &value);
+                head = insertHead(head, value);
+                display(head);
+                break;
+                
+            case 2:
+                printf("Valeur à insérer en queue: ");
+                scanf("%d", &value);
+                head = insertTail(head, value);
+                display(head);
+                break;
+                
+            case 3:
+                if (head == NULL) {
+                    printf("✗ Liste vide!\n");
+                } else {
+                    printf("Valeur à supprimer (toutes): ");
+                    scanf("%d", &value);
+                    head = deleteOccurrences(head, value);
+                    display(head);
+                }
+                break;
+                
+            case 4:
+                if (head == NULL) {
+                    printf("✗ Liste vide!\n");
+                } else {
+                    printf("Valeur à supprimer (première): ");
+                    scanf("%d", &value);
+                    head = deleteFirst(head, value);
+                    display(head);
+                }
+                break;
+                
+            case 5:
+                if (head == NULL) {
+                    printf("✗ Liste vide!\n");
+                } else {
+                    printf("Valeur à rechercher: ");
+                    scanf("%d", &value);
+                    search(head, value);
+                }
+                break;
+                
+            case 6:
+                display(head);
+                break;
+                
+            case 7:
+                printf("Nombre d'éléments: %d\n", countNodes(head));
+                break;
+                
+            case 0:
+                printf("\n✓ Libération de la mémoire...\n");
+                freeList(head);
+                printf("Au revoir!\n");
+                break;
+                
+            default:
+                printf("✗ Choix invalide! Réessayez.\n");
+        }
+        
+    } while(choice != 0);
+    
     return 0;
 }
