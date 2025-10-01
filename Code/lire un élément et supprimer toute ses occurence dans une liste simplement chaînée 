@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure pour une liste simplement chaînée
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Fonction pour insérer un élément en tête (pour tester)
+struct Node* insert(struct Node* head, int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = head;
+    return newNode;
+}
+
+// Fonction pour supprimer toutes les occurrences d'un élément
+struct Node* deleteOccurrences(struct Node* head, int key) {
+    struct Node *current = head, *prev = NULL, *temp;
+
+    // Cas où la tête contient l'élément à supprimer
+    while (current != NULL && current->data == key) {
+        temp = current;
+        current = current->next;
+        free(temp);
+    }
+    head = current;
+
+    // Parcourir le reste de la liste
+    while (current != NULL) {
+        if (current->data == key) {
+            prev->next = current->next;
+            free(current);
+            current = prev->next;
+        } else {
+            prev = current;
+            current = current->next;
+        }
+    }
+    return head;
+}
+
+// Fonction pour afficher la liste
+void display(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+    int key;
+
+    // Création d'une liste pour tester
+    head = insert(head, 5);
+    head = insert(head, 3);
+    head = insert(head, 5);
+    head = insert(head, 2);
+    head = insert(head, 5);
+
+    printf("Liste initiale : ");
+    display(head);
+
+    printf("Entrez l'élément à supprimer : ");
+    scanf("%d", &key);
+
+    head = deleteOccurrences(head, key);
+
+    printf("Liste après suppression de %d : ", key);
+    display(head);
+
+    return 0;
+}
